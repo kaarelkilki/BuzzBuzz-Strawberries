@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5610529490469313386}
   m_Layer: 0
   m_Name: Bee
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbae7f27b157ad46ba13573e7d3981f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   force: 300
 --- !u!70 &5610529490469313386
 CapsuleCollider2D:
