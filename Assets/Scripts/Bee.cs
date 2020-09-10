@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Bee : MonoBehaviour
 {
@@ -11,8 +13,11 @@ public class Bee : MonoBehaviour
     public float speed = 2;
     // Flap force
     public float force = 300;
-    
+
+    public AudioSource collectStrawberry;
+    public GameObject strawberry;    
     public Text countText;
+    public TextMeshProUGUI scoreText;
 
     // Score count
     private int count;
@@ -24,6 +29,7 @@ public class Bee : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
         count = 0;
         SetScoreText();
+        collectStrawberry.Stop();
     }
 
     // Update is called once per frame
@@ -38,9 +44,11 @@ public class Bee : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
+            collectStrawberry.Play();
             other.gameObject.SetActive(false);
             count = count + 1;
             SetScoreText();
+            
         }
     }
 
@@ -52,6 +60,7 @@ public class Bee : MonoBehaviour
 
     void SetScoreText ()
     {
-        countText.text = "SCORE: " + count.ToString();
+        scoreText.text = "SCORE: " + count.ToString() + " <sprite=7>";
+
     }
 }
