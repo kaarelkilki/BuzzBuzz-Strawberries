@@ -10,17 +10,19 @@ using TMPro;
 public class Bee : MonoBehaviour
 {
     // Movement speed
-    public float speed = 2;
+    [SerializeField] float speed = 2;
     // Flap force
-    public float force = 300;
+    [SerializeField] float force = 300;
 
     public AudioSource collectStrawberry;
     public GameObject strawberry;    
-    public Text countText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI totalScoreText;
 
     // Score count
     private int count;
+    private int totalScore; // TODO make it work
+    
 
     // Use this for initialization
     void Start()
@@ -56,6 +58,9 @@ public class Bee : MonoBehaviour
     {
         // Restart
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        totalScore = totalScore + count;
+        PlayerPrefs.Save();
+        Debug.Log(totalScore);
         SceneManager.LoadScene("AfterGameMenu");
     }
 
