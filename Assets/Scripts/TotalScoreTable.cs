@@ -22,7 +22,7 @@ public class TotalScoreTable : MonoBehaviour
             entryRectTransform.anchoredPosition = new Vector2(0, -templateHight * i);
             entryTransform.gameObject.SetActive(true);
 
-            int rank = i + 1;       
+            int rank = i + 1;
             entryTransform.Find("posText").GetComponent<Text>().text = rank.ToString();
 
             int score = Random.Range(0, 100000);

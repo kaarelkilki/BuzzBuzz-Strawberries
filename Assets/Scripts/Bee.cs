@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 
 public class Bee : MonoBehaviour
 {
@@ -50,23 +53,27 @@ public class Bee : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetScoreText();
+            TotalScore();
             
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        // Restart
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        totalScore = totalScore + count;
-        PlayerPrefs.Save();
-        Debug.Log(totalScore);
         SceneManager.LoadScene("AfterGameMenu");
     }
 
     void SetScoreText ()
     {
         scoreText.text = "SCORE: " + count.ToString() + " <sprite=7>";
-
     }
+    public void TotalScore()
+    {
+        totalScore = totalScore + count;
+        
+        Debug.Log(totalScore);
+        PlayerPrefs.Save();
+        
+    }
+    
 }
