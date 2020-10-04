@@ -24,9 +24,15 @@ public class Bee : MonoBehaviour
 
     // Score count
     private int count;
-    //private int totalScore; // TODO make it work
-    
+    private int totalScore; // TODO make it work
 
+    private void Awake()
+    {
+        if (ZPlayerPrefs.HasKey("TotalScore"))
+        {
+            totalScore = ZPlayerPrefs.GetInt("TotalScore");
+        }
+    }
     // Use this for initialization
     void Start()
     {
@@ -60,20 +66,21 @@ public class Bee : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        TotalScore();
+        Debug.Log(totalScore);
         SceneManager.LoadScene("AfterGameMenu");
+    }
+
+    private void TotalScore()
+    {
+        totalScore = totalScore + count;
+        ZPlayerPrefs.SetInt("TotalScore", totalScore);
     }
 
     void SetScoreText ()
     {
         scoreText.text = "SCORE: " + count.ToString() + " <sprite=7>";
     }
-    //public void TotalScore()
-    //{
-    //    totalScore = totalScore + count;
-        
-    //    Debug.Log(totalScore);
-    //    PlayerPrefs.Save();
-        
-    //}
+    
     
 }
