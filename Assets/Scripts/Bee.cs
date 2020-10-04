@@ -24,7 +24,7 @@ public class Bee : MonoBehaviour
 
     // Score count
     private int count;
-    private int totalScore; // TODO make it work
+    //private int totalScore; // TODO make it work
     
 
     // Use this for initialization
@@ -53,7 +53,7 @@ public class Bee : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
             SetScoreText();
-            TotalScore();
+            //TotalScore();
             
         }
     }
@@ -67,13 +67,13 @@ public class Bee : MonoBehaviour
     {
         scoreText.text = "SCORE: " + count.ToString() + " <sprite=7>";
     }
-    public void TotalScore()
-    {
-        totalScore = totalScore + count;
+    //public void TotalScore()
+    //{
+    //    totalScore = totalScore + count;
         
-        Debug.Log(totalScore);
-        PlayerPrefs.Save();
+    //    Debug.Log(totalScore);
+    //    PlayerPrefs.Save();
         
-    }
+    //}
     
 }

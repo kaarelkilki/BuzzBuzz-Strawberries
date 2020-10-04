@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+    public void Instructions()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
     public void Scores()
     {
         SceneManager.LoadScene("Scores");
@@ -22,4 +26,15 @@ public class MainMenu : MonoBehaviour
         Debug.Log("QUIT!");
         Application.Quit();
     }
+    //public void Logo()
+    //{
+    //    StartCoroutine(WaitForIt(3.0F));
+
+    //    IEnumerator WaitForIt(float waitTime)
+    //    {
+    //        yield return new WaitForSeconds(waitTime);
+    //        SceneManager.LoadScene("StartMenu");
+    //    }
+    //}
+    
 }
