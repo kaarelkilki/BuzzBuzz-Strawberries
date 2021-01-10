@@ -21,8 +21,10 @@ public class Bee : MonoBehaviour
 
     void Start()
     {
+        
+        GetComponent<Rigidbody2D>().gravityScale = 0;
         // Fly towards the right
-        GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        //GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
         count = 0;
         SetScoreText();
         //collectStrawberry.Stop();
