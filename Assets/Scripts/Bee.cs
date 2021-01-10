@@ -1,14 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Security.Cryptography;
-using System.Text;
 
 public class Bee : MonoBehaviour
 {
@@ -17,30 +9,23 @@ public class Bee : MonoBehaviour
     // Flap force
     [SerializeField] float force = 300;
 
-    public AudioSource collectStrawberry;
+    //public AudioSource collectStrawberry;
     public GameObject strawberry;    
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI totalScoreText;
 
     // Score count
     private int count;
+    private int highScore;
     private int totalScore; // TODO make it work
 
-    private void Awake()
-    {
-        if (ZPlayerPrefs.HasKey("TotalScore"))
-        {
-            totalScore = ZPlayerPrefs.GetInt("TotalScore");
-        }
-    }
-    // Use this for initialization
     void Start()
     {
         // Fly towards the right
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
         count = 0;
         SetScoreText();
-        collectStrawberry.Stop();
+        //collectStrawberry.Stop();
     }
 
     // Update is called once per frame
@@ -55,7 +40,7 @@ public class Bee : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
-            collectStrawberry.Play();
+            //collectStrawberry.Play();
             other.gameObject.SetActive(false);
             count = count + 1;
             SetScoreText();
@@ -67,20 +52,17 @@ public class Bee : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll)
     {
         TotalScore();
-        Debug.Log(totalScore);
-        SceneManager.LoadScene("AfterGameMenu");
+        Debug.Log(count);
+        SceneManager.LoadScene("Menu");
     }
 
     private void TotalScore()
     {
         totalScore = totalScore + count;
-        ZPlayerPrefs.SetInt("TotalScore", totalScore);
     }
 
     void SetScoreText ()
     {
-        scoreText.text = "SCORE: " + count.ToString() + " <sprite=7>";
+        scoreText.text = count.ToString() + " <sprite=7>";
     }
-    
-    
 }

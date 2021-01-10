@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1246843179
 Transform:
   m_ObjectHideFlags: 0
@@ -295,10 +295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   force: 300
-  collectStrawberry: {fileID: 1246843178}
   strawberry: {fileID: 0}
-  countText: {fileID: 0}
   scoreText: {fileID: 0}
+  totalScoreText: {fileID: 0}
 --- !u!70 &5610529490469313386
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
