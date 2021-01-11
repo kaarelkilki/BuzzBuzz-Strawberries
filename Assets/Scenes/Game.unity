@@ -874,9 +874,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338785242}
+      - m_Target: {fileID: 1927475609}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 1358292500}
   - component: {fileID: 1358292499}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ScoreText (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338785242}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 1927475611}
+        m_TargetAssemblyTypeName: Bee, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1469,6 +1469,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1927475609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5610529490469313377, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+  m_PrefabInstance: {fileID: 5610529491878751351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1927475611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+  m_PrefabInstance: {fileID: 5610529491878751351}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927475609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbae7f27b157ad46ba13573e7d3981f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1941488924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,13 +1940,29 @@ PrefabInstance:
       value: Bee
       objectReference: {fileID: 0}
     - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1358292499}
     - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: canvasMenu
+      value: 
+      objectReference: {fileID: 338785245}
+    - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: canvasPlay
+      value: 
+      objectReference: {fileID: 499980824}
+    - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
       propertyPath: strawberry
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 1969542954}
     - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
       propertyPath: collectStrawberry
       value: 

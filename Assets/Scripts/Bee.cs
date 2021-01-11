@@ -5,29 +5,27 @@ using TMPro;
 public class Bee : MonoBehaviour
 {
     // Movement speed
-    [SerializeField] float speed = 2;
+    [SerializeField] float speed = 0;
     // Flap force
     [SerializeField] float force = 300;
 
     //public AudioSource collectStrawberry;
-    public GameObject strawberry;    
+    //public GameObject strawberry;    
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI highScoreText;
+    public Canvas canvasPlay;
+    public Canvas canvasMenu;
 
     // Score count
     private int count;
     private int highScore;
-    private int totalScore; // TODO make it work
-
+    
     void Start()
     {
-        
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-        // Fly towards the right
-        //GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        MenuCanvas();
         count = 0;
+
         SetScoreText();
-        //collectStrawberry.Stop();
     }
 
     // Update is called once per frame
@@ -44,7 +42,7 @@ public class Bee : MonoBehaviour
         {
             //collectStrawberry.Play();
             other.gameObject.SetActive(false);
-            count = count + 1;
+            count += 1;
             SetScoreText();
             //TotalScore();
             
@@ -53,18 +51,55 @@ public class Bee : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        TotalScore();
         Debug.Log(count);
-        SceneManager.LoadScene("Menu");
+
+        MenuCanvas();
     }
 
-    private void TotalScore()
-    {
-        totalScore = totalScore + count;
-    }
+    
 
-    void SetScoreText ()
+    void SetScoreText()
     {
         scoreText.text = count.ToString() + " <sprite=7>";
+        
+    }
+
+    void MenuCanvas()
+    {
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        speed = 0;
+        force = 0;
+        GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        canvasMenu.enabled = true;
+        canvasPlay.enabled = false;
+        transform.position = new Vector3(-13, 1,0);
+
+        if (count >= highScore)
+        {
+            highScore = count;
+            highScoreText.text = count.ToString() + " <sprite=7>";
+            //SavePlayer();
+        }
+        else if (count < highScore)
+        {
+            highScoreText.text = highScore.ToString() + " <sprite=7>";
+        }
+
+        // Enable collectables
+    }
+
+    public void PlayGame()
+    {
+        count = 0;
+        canvasMenu.enabled = false;
+        canvasPlay.enabled = true;
+        GetComponent<Rigidbody2D>().gravityScale = 1;
+        speed = 3;
+        force = 300;
+
+        // Fly towards the right
+        GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        
+        
     }
 }
