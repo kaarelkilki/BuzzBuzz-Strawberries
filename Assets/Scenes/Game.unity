@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 338785245}
   - component: {fileID: 338785244}
   - component: {fileID: 338785243}
-  - component: {fileID: 338785242}
   m_Layer: 5
   m_Name: CanvasMenu
   m_TagString: Untagged
@@ -209,18 +208,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &338785242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338785241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36bef31f29a545344978f625b3823bd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &338785243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 75, y: 75}
+  m_AnchoredPosition: {x: 100, y: 75}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597167119
@@ -581,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2X <sprite=7>
+  m_text: 2x <sprite=7>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6ce903f6e8fa3d499953c883c344a63, type: 2}
   m_sharedMaterial: {fileID: 9062415627855725251, guid: a6ce903f6e8fa3d499953c883c344a63, type: 2}
@@ -1346,7 +1333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1924079116
 Transform:
   m_ObjectHideFlags: 0
@@ -1935,9 +1922,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1246843177, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5610529490469313377, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
       propertyPath: m_Name
       value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610529490469313386, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
       propertyPath: speed

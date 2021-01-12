@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Bee : MonoBehaviour
 {
@@ -8,22 +9,21 @@ public class Bee : MonoBehaviour
     // Flap force
     [SerializeField] float force = 300;
 
-    //public AudioSource collectStrawberry;
+    public AudioSource collectStrawberry;
     //public GameObject strawberry;    
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScoreText;
+    public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public Canvas canvasPlay;
     public Canvas canvasMenu;
 
     // Score count
-    private int count;
+    public int count;
     private int highScore;
-    
     void Start()
     {
+        collectStrawberry.Stop();
+        LoadPlayer();
         MenuCanvas();
-        count = 0;
-
         SetScoreText();
     }
 
@@ -31,7 +31,7 @@ public class Bee : MonoBehaviour
     void Update()
     {
         Flap();
-
+        
         AndroidQuit();
     }
 
@@ -39,20 +39,20 @@ public class Bee : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
-            //collectStrawberry.Play();
+            collectStrawberry.Play();
             other.gameObject.SetActive(false);
-            count += 1;
+            count = count + 1;
             SetScoreText();
-            //TotalScore();
-            
-            //use courutine and timer to set gameObject to true again
+            //TotalScore();            
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        SavePlayer();
         Debug.Log(count);
-        MenuCanvas();
+        count = 0;
+        SceneManager.LoadScene("Game");
     }
 
     void Flap()
@@ -103,7 +103,6 @@ public class Bee : MonoBehaviour
 
     public void PlayGame()
     {
-        count = 0;
         canvasMenu.enabled = false;
         canvasPlay.enabled = true;
         GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -112,7 +111,16 @@ public class Bee : MonoBehaviour
 
         // Fly towards the right
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
-        
-        
+    }
+
+    void SavePlayer()
+    {
+        ES3.Save("highScore", highScore);
+    }
+
+    void LoadPlayer()
+    {
+        if (ES3.KeyExists("highScore"))
+            highScore = ES3.Load<int>("highScore");
     }
 }
