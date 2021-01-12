@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Bee : MonoBehaviour
@@ -31,9 +30,9 @@ public class Bee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Flap
-        if (Input.GetKeyDown(KeyCode.Space))
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
+        Flap();
+
+        AndroidQuit();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -46,22 +45,47 @@ public class Bee : MonoBehaviour
             SetScoreText();
             //TotalScore();
             
+            //use courutine and timer to set gameObject to true again
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         Debug.Log(count);
-
         MenuCanvas();
     }
 
-    
+    void Flap()
+    {
+        // Flap
+        if (Input.GetKeyDown(KeyCode.Space))
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
+    }
+
+    void AndroidQuit()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+    }
 
     void SetScoreText()
     {
         scoreText.text = count.ToString() + " <sprite=7>";
-        
+        if (count >= highScore)
+        {
+            highScore = count;
+            highScoreText.text = count.ToString() + " <sprite=7>";
+            //SavePlayer();
+        }
+        else if (count < highScore)
+        {
+            highScoreText.text = highScore.ToString() + " <sprite=7>";
+        }
     }
 
     void MenuCanvas()
@@ -74,18 +98,7 @@ public class Bee : MonoBehaviour
         canvasPlay.enabled = false;
         transform.position = new Vector3(-13, 1,0);
 
-        if (count >= highScore)
-        {
-            highScore = count;
-            highScoreText.text = count.ToString() + " <sprite=7>";
-            //SavePlayer();
-        }
-        else if (count < highScore)
-        {
-            highScoreText.text = highScore.ToString() + " <sprite=7>";
-        }
-
-        // Enable collectables
+        SetScoreText();
     }
 
     public void PlayGame()
