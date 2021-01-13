@@ -18,7 +18,8 @@ public class Bee : MonoBehaviour
 
     // Score count
     public int count;
-    private int highScore;
+    public int addCount;
+    public int highScore;
     void Start()
     {
         collectStrawberry.Stop();
@@ -41,7 +42,7 @@ public class Bee : MonoBehaviour
         {
             collectStrawberry.Play();
             other.gameObject.SetActive(false);
-            count = count + 1;
+            count += addCount;
             SetScoreText();
             //TotalScore();            
         }
@@ -93,6 +94,7 @@ public class Bee : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
         speed = 0;
         force = 0;
+        addCount = 1;
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
         canvasMenu.enabled = true;
         canvasPlay.enabled = false;
