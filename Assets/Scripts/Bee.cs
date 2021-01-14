@@ -7,10 +7,9 @@ public class Bee : MonoBehaviour
     // Movement speed
     [SerializeField] float speed = 0;
     // Flap force
-    [SerializeField] float force = 300;
+    [SerializeField] float force = 500;
 
     public AudioSource collectStrawberry;
-    //public GameObject strawberry;    
     public TMP_Text scoreText;
     public TMP_Text highScoreText;
     public Canvas canvasPlay;
@@ -28,7 +27,6 @@ public class Bee : MonoBehaviour
         SetScoreText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Flap();
@@ -44,14 +42,12 @@ public class Bee : MonoBehaviour
             other.gameObject.SetActive(false);
             count += addCount;
             SetScoreText();
-            //TotalScore();            
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         SavePlayer();
-        Debug.Log(count);
         count = 0;
         SceneManager.LoadScene("Game");
     }
@@ -59,8 +55,20 @@ public class Bee : MonoBehaviour
     void Flap()
     {
         // Flap
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
+#endif
+
+#if UNITY_ANDROID
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
+            }
+        }
+#endif
     }
 
     void AndroidQuit()
@@ -69,6 +77,7 @@ public class Bee : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                SavePlayer();
                 Application.Quit();
             }
         }
@@ -81,7 +90,6 @@ public class Bee : MonoBehaviour
         {
             highScore = count;
             highScoreText.text = count.ToString() + " <sprite=7>";
-            //SavePlayer();
         }
         else if (count < highScore)
         {
@@ -109,7 +117,7 @@ public class Bee : MonoBehaviour
         canvasPlay.enabled = true;
         GetComponent<Rigidbody2D>().gravityScale = 1;
         speed = 3;
-        force = 300;
+        force = 400;
 
         // Fly towards the right
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
