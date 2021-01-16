@@ -28,7 +28,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 
         // Initialize the Ads listener and service:
         Advertisement.AddListener(this);
-        Advertisement.Initialize(gameId, true);
+        Advertisement.Initialize(gameId, false);
     }
 
     // Implement a function for showing a rewarded video ad:
