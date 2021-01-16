@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Bee : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Bee : MonoBehaviour
     public TMP_Text highScoreText;
     public Canvas canvasPlay;
     public Canvas canvasMenu;
+    public Image imgUp;
 
     // Score count
     public int count;
@@ -118,7 +120,6 @@ public class Bee : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 1;
         speed = 3;
         force = 400;
-
         // Fly towards the right
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
     }

@@ -1427,12 +1427,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710867578}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf0d25869f8b974bb89ca7a0294b2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   imgUp: {fileID: 1710867580}
+  buttonPlay: {fileID: 1368771760}
 --- !u!1 &1924079115
 GameObject:
   m_ObjectHideFlags: 0
