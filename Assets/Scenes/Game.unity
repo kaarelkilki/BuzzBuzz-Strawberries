@@ -889,9 +889,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1927475609}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1927475611}
+        m_TargetAssemblyTypeName: Bee, Assembly-CSharp
+        m_MethodName: Ext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1574,17 +1574,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1927475609 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5610529490469313377, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
-  m_PrefabInstance: {fileID: 5610529491878751351}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1927475611 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5610529490469313387, guid: 1a6d1a44c8110c445906839a71e8f502, type: 3}
   m_PrefabInstance: {fileID: 5610529491878751351}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927475609}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbae7f27b157ad46ba13573e7d3981f, type: 3}

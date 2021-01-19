@@ -85,6 +85,12 @@ public class Bee : MonoBehaviour
         }
     }
 
+    public void Ext()
+    {
+        SavePlayer();
+        Application.Quit();
+    }
+
     void SetScoreText()
     {
         scoreText.text = count.ToString() + " <sprite=7>";
