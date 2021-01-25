@@ -15,12 +15,16 @@ public class Bee : MonoBehaviour
     public TMP_Text highScoreText;
     public Canvas canvasPlay;
     public Canvas canvasMenu;
+    public Canvas canvasPreScreenshot;
+    public Canvas canvasScreenshot;
     public Image imgUp;
 
     // Score count
     public int count;
     public int addCount;
     public int highScore;
+    public int shareHighScore;
+
     void Start()
     {
         collectStrawberry.Stop();
@@ -73,24 +77,6 @@ public class Bee : MonoBehaviour
 #endif
     }
 
-    void AndroidQuit()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SavePlayer();
-                Application.Quit();
-            }
-        }
-    }
-
-    public void Ext()
-    {
-        SavePlayer();
-        Application.Quit();
-    }
-
     void SetScoreText()
     {
         scoreText.text = count.ToString() + " <sprite=7>";
@@ -114,20 +100,50 @@ public class Bee : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
         canvasMenu.enabled = true;
         canvasPlay.enabled = false;
-        transform.position = new Vector3(-13, 1,0);
+        canvasScreenshot.enabled = false;
+        canvasPreScreenshot.enabled = false;
+        transform.position = new Vector3(-13, 1, 0);
 
         SetScoreText();
+    }
+
+    void AndroidQuit()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SavePlayer();
+                Application.Quit();
+            }
+        }
+    }
+
+    public void Exit()
+    {
+        SavePlayer();
+        Application.Quit();
     }
 
     public void PlayGame()
     {
         canvasMenu.enabled = false;
         canvasPlay.enabled = true;
+        canvasScreenshot.enabled = false;
+        canvasPreScreenshot.enabled = false;
         GetComponent<Rigidbody2D>().gravityScale = 1;
         speed = 3;
         force = 400;
         // Fly towards the right
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+    }
+
+    public void PreShare()
+    {
+        canvasMenu.enabled = false;
+        canvasPlay.enabled = false;
+        canvasScreenshot.enabled = false;
+        canvasPreScreenshot.enabled = true;
     }
 
     void SavePlayer()
