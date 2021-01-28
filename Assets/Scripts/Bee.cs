@@ -13,6 +13,7 @@ public class Bee : MonoBehaviour
     public AudioSource collectStrawberry;
     public TMP_Text scoreText;
     public TMP_Text highScoreText;
+    public TMP_Text _highScoreText;
     public Canvas canvasPlay;
     public Canvas canvasMenu;
     public Canvas canvasPreScreenshot;
@@ -24,6 +25,10 @@ public class Bee : MonoBehaviour
     public int addCount;
     public int highScore;
     public int shareHighScore;
+    public float preShareTime = 3.0f;
+    public bool preShareTimeRunning = false;
+    public float shareTime = 4.0f;
+    public bool shareTimeRunning = false;
 
     void Start()
     {
@@ -36,7 +41,8 @@ public class Bee : MonoBehaviour
     void Update()
     {
         Flap();
-        
+        PreShareTimer();
+        ShareTimer();
         AndroidQuit();
     }
 
@@ -84,10 +90,12 @@ public class Bee : MonoBehaviour
         {
             highScore = count;
             highScoreText.text = count.ToString() + " <sprite=7>";
+            _highScoreText.text = count.ToString() + " <sprite=7>";
         }
         else if (count < highScore)
         {
             highScoreText.text = highScore.ToString() + " <sprite=7>";
+            _highScoreText.text = highScore.ToString() + " <sprite=7>";
         }
     }
 
@@ -138,12 +146,49 @@ public class Bee : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
     }
 
+    void PreShareTimer()
+    {
+        if (preShareTimeRunning == true)
+        {
+            preShareTime -= Time.deltaTime;
+            if (preShareTime > 0)
+            {
+                canvasMenu.enabled = false;
+                canvasPlay.enabled = false;
+                canvasScreenshot.enabled = false;
+                canvasPreScreenshot.enabled = true;
+            }
+            else if (preShareTime < 0)
+            {
+                shareTimeRunning = true;
+                ShareTimer();
+                preShareTimeRunning = false;
+                preShareTime = 3.0f;
+            }
+        }
+    }
+
+    void ShareTimer()
+    {
+        if (shareTimeRunning == true)
+        {
+            canvasMenu.enabled = false;
+            canvasPlay.enabled = false;
+            canvasScreenshot.enabled = true;
+            canvasPreScreenshot.enabled = false;
+            shareTime -= Time.deltaTime;
+            if (shareTime < 0)
+            {
+                MenuCanvas();
+                shareTimeRunning = false;
+                shareTime = 4.0f;
+            }
+        }   
+    }
+
     public void PreShare()
     {
-        canvasMenu.enabled = false;
-        canvasPlay.enabled = false;
-        canvasScreenshot.enabled = false;
-        canvasPreScreenshot.enabled = true;
+        preShareTimeRunning = true;
     }
 
     void SavePlayer()
